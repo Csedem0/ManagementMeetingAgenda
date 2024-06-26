@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Management Meeting Agenda</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    h1 {
+      border-bottom: 2px solid #2c3e50;
+      padding-bottom: 10px;
+    }
+    h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    ul, ol {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    input[type="text"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #2c3e50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+    }
+    button:hover {
+      background-color: #34495e;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+  <h1>Management Meeting</h1>
+  <h2>MEETING AGENDA</h2>
+  <form id="meetingForm">
+    <ul>
+      <li><strong>Date:</strong><br><input type="text" id="date" name="date" value="Monday June 24th 2024" required></li>
+      <li><strong>Last Meeting:</strong><br><input type="text" id="lastMeeting" name="lastMeeting" value="Friday June 21st 2024" required></li>
+      <li><strong>Purpose of Meeting:</strong><br><input type="text" id="purpose" name="purpose" value="Management Meeting" required></li>
+      <li><strong>Time:</strong><br><input type="text" id="time" name="time" value="10 am (Port Harcourt time)" required></li>
+      <li><strong>Location:</strong><br><input type="text" id="location" name="location" value="Google Meet Meeting" required></li>
+      <li><strong>Chair:</strong><br><input type="text" id="chair" name="chair" value="Devine" required></li>
+      <li><strong>Secretary:</strong><br><input type="text" id="secretary" name="secretary" value="Lesoda" required></li>
+    </ul>
+    <h2>ATTENDEES:</h2>
+    <ol>
+      <li><input type="text" name="attendee1" value="Devine" required></li>
+      <li><input type="text" name="attendee2" value="Kini" required></li>
+      <li><input type="text" name="attendee3" value="Precious" required></li>
+      <li><input type="text" name="attendee4" value="Gloria" required></li>
+      <li><input type="text" name="attendee5" value="Lesoda" required></li>
+    </ol>
+    <h2>Topic Discussion/Meeting Notes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Topic</th>
+          <th>Discussion/Meeting Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" name="topic1" value="Meeting with your team" required></td>
+          <td><input type="text" name="note1" value="Your administrative assistant has been trained to be the secretary of all department meetings. You must listen to your team this week as well as evaluate the progress they show during their probation period." required></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="topic2" value="Creating new tasks" required></td>
+          <td><input type="text" name="note2" value="All managers are responsible for using the weekly meeting summary and the Harrison plan to create new tasks for their department to complete. The projects must be clearly outlined to determine if milestones and deadlines are met. Your administrative assistant is there to assist you in putting together a summary of all the details in the department allowing easy task creation with detailed descriptions." required></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="topic3" value="Ensuring there are deadlines" required></td>
+          <td><input type="text" name="note3" value="ALL TASKS MUST HAVE A DEADLINE unless it is an ongoing task. There can no longer be any tasks created without a deadline and an estimated amount of time it will take to complete the task. If the true amount of time it will take to complete a task is unknown an estimate must be made." required></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="topic4" value="Tracking time spent on each task" required></td>
+          <td><input type="text" name="note4" value="Paying attention to the progress of all tasks is very important. We will be discussing the progress of all tasks every Friday. At the end of every week managers will be asked to provide statistics concerning all the tasks that are in their department. Your assistant will assist in putting this information together for you." required></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="topic5" value="Human Resources" required></td>
+          <td><input type="text" name="note5" value="Why are there people under the hired section who have not yet been to an orientation? Do they have contracts? When was the last time they were connected? What can be done to make this department operate more smoothly? What other positions are necessary for this department? You are now able to create new emails for staff members. To create a new email go to admin.google.com and log in with your work email." required></td>
+        </tr>
+        <tr>
+          <td><input type="text" name="topic6" value="Orientation and Training" required></td>
+          <td><input type="text" name="note6" value="Recruitment has started again as of today. The administration team will be working with the Human Resources department to ensure this works smoothly. The course for each department must be completed by Tuesday June 25th 2024. We need many types of staff members. We must continue the onboarding process." required></td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Prepared By:</strong><br><input type="text" id="preparedBy" name="preparedBy" value="Devine and Lesoda" required></p>
+    <button type="button" onclick="generatePDF()">Save as PDF</button>
+  </form>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+  <script>
+    async function generatePDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Set styles
+      const titleFontSize = 20;
+      const subtitleFontSize = 16;
+      const textFontSize = 12;
+      const lineHeight = 10;
+      const marginLeft = 10;
+      let startY = 20;
+      const pageHeight = doc.internal.pageSize.height;
+
+      function addText(text, fontSize = textFontSize) {
+                        doc.setFontSize(fontSize);
+                        const textWidth = doc.getStringUnitWidth(text) * fontSize / doc.internal.scaleFactor;
+                        const remainingText = doc.splitTextToSize(text, doc.internal.pageSize.width - 2 * marginLeft);
+                        if (startY + (remainingText.length + 1) * lineHeight > pageHeight) {
+                            doc.addPage();
+                            startY = 20;
+                        }
+                        doc.text(remainingText, marginLeft, startY);
+                        startY += (remainingText.length + 1) * lineHeight;
+                    }
+
+      // Add title
+      addText("Management Meeting", titleFontSize);
+      addText("MEETING AGENDA", subtitleFontSize);
+
+      // Get form values
+      const date = document.getElementById('date').value;
+      const lastMeeting = document.getElementById('lastMeeting').value;
+      const purpose = document.getElementById('purpose').value;
+      const time = document.getElementById('time').value;
+      const location = document.getElementById('location').value;
+      const chair = document.getElementById('chair').value;
+      const secretary = document.getElementById('secretary').value;
+      const attendees = [
+        document.getElementsByName('attendee1')[0].value,
+        document.getElementsByName('attendee2')[0].value,
+        document.getElementsByName('attendee3')[0].value,
+        document.getElementsByName('attendee4')[0].value,
+        document.getElementsByName('attendee5')[0].value
+      ];
+      const topics = [
+        { topic: document.getElementsByName('topic1')[0].value, note: document.getElementsByName('note1')[0].value },
+        { topic: document.getElementsByName('topic2')[0].value, note: document.getElementsByName('note2')[0].value },
+        { topic: document.getElementsByName('topic3')[0].value, note: document.getElementsByName('note3')[0].value },
+        { topic: document.getElementsByName('topic4')[0].value, note: document.getElementsByName('note4')[0].value },
+        { topic: document.getElementsByName('topic5')[0].value, note: document.getElementsByName('note5')[0].value },
+        { topic: document.getElementsByName('topic6')[0].value, note: document.getElementsByName('note6')[0].value }
+      ];
+      const preparedBy = document.getElementById('preparedBy').value;
+
+      // Add form values to PDF
+      addText(`Date: ${date}`);
+      addText(`Last Meeting: ${lastMeeting}`);
+      addText(`Purpose of Meeting: ${purpose}`);
+      addText(`Time: ${time}`);
+      addText(`Location: ${location}`);
+      addText(`Chair: ${chair}`);
+      addText(`Secretary: ${secretary}`);
+      addText(`ATTENDEES:`, subtitleFontSize);
+
+      attendees.forEach(attendee => addText(attendee));
+
+      addText(`Topic Discussion/Meeting Notes`, subtitleFontSize);
+
+      topics.forEach(({ topic, note }) => {
+        addText(`Topic: ${topic}`, subtitleFontSize);
+        addText(`Discussion/Meeting Notes: ${note}`);
+      });
+
+      addText(`Prepared By: ${preparedBy}`);
+
+      doc.save('Management_Meeting_Agenda.pdf');
+    }
+  </script>
+</body>
+</html>
