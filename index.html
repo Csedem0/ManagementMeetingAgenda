@@ -27,13 +27,17 @@
     li {
       margin-bottom: 10px;
     }
-    input[type="text"] {
+    input[type="text"], textarea {
       width: calc(100% - 22px);
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 4px;
       margin-bottom: 10px;
       box-sizing: border-box;
+    }
+    textarea {
+      height: 60px; /* Adjust this as needed */
+      resize: vertical;
     }
     button {
       background-color: #2c3e50;
@@ -94,28 +98,28 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="text" name="topic1" value="Meeting with your team" required></td>
-          <td><input type="text" name="note1" value="Your administrative assistant has been trained to be the secretary of all department meetings. You must listen to your team this week as well as evaluate the progress they show during their probation period." required></td>
+          <td><textarea name="topic1" required>Meeting with your team</textarea></td>
+          <td><textarea name="note1" required>Your administrative assistant has been trained to be the secretary of all department meetings. You must listen to your team this week as well as evaluate the progress they show during their probation period.</textarea></td>
         </tr>
         <tr>
-          <td><input type="text" name="topic2" value="Creating new tasks" required></td>
-          <td><input type="text" name="note2" value="All managers are responsible for using the weekly meeting summary and the Harrison plan to create new tasks for their department to complete. The projects must be clearly outlined to determine if milestones and deadlines are met. Your administrative assistant is there to assist you in putting together a summary of all the details in the department allowing easy task creation with detailed descriptions." required></td>
+          <td><textarea name="topic2" required>Creating new tasks</textarea></td>
+          <td><textarea name="note2" required>All managers are responsible for using the weekly meeting summary and the Harrison plan to create new tasks for their department to complete. The projects must be clearly outlined to determine if milestones and deadlines are met. Your administrative assistant is there to assist you in putting together a summary of all the details in the department allowing easy task creation with detailed descriptions.</textarea></td>
         </tr>
         <tr>
-          <td><input type="text" name="topic3" value="Ensuring there are deadlines" required></td>
-          <td><input type="text" name="note3" value="ALL TASKS MUST HAVE A DEADLINE unless it is an ongoing task. There can no longer be any tasks created without a deadline and an estimated amount of time it will take to complete the task. If the true amount of time it will take to complete a task is unknown an estimate must be made." required></td>
+          <td><textarea name="topic3" required>Ensuring there are deadlines</textarea></td>
+          <td><textarea name="note3" required>ALL TASKS MUST HAVE A DEADLINE unless it is an ongoing task. There can no longer be any tasks created without a deadline and an estimated amount of time it will take to complete the task. If the true amount of time it will take to complete a task is unknown an estimate must be made.</textarea></td>
         </tr>
         <tr>
-          <td><input type="text" name="topic4" value="Tracking time spent on each task" required></td>
-          <td><input type="text" name="note4" value="Paying attention to the progress of all tasks is very important. We will be discussing the progress of all tasks every Friday. At the end of every week managers will be asked to provide statistics concerning all the tasks that are in their department. Your assistant will assist in putting this information together for you." required></td>
+          <td><textarea name="topic4" required>Tracking time spent on each task</textarea></td>
+          <td><textarea name="note4" required>Paying attention to the progress of all tasks is very important. We will be discussing the progress of all tasks every Friday. At the end of every week managers will be asked to provide statistics concerning all the tasks that are in their department. Your assistant will assist in putting this information together for you.</textarea></td>
         </tr>
         <tr>
-          <td><input type="text" name="topic5" value="Human Resources" required></td>
-          <td><input type="text" name="note5" value="Why are there people under the hired section who have not yet been to an orientation? Do they have contracts? When was the last time they were connected? What can be done to make this department operate more smoothly? What other positions are necessary for this department? You are now able to create new emails for staff members. To create a new email go to admin.google.com and log in with your work email." required></td>
+          <td><textarea name="topic5" required>Human Resources</textarea></td>
+          <td><textarea name="note5" required>Why are there people under the hired section who have not yet been to an orientation? Do they have contracts? When was the last time they were connected? What can be done to make this department operate more smoothly? What other positions are necessary for this department? You are now able to create new emails for staff members. To create a new email go to admin.google.com and log in with your work email.</textarea></td>
         </tr>
         <tr>
-          <td><input type="text" name="topic6" value="Orientation and Training" required></td>
-          <td><input type="text" name="note6" value="Recruitment has started again as of today. The administration team will be working with the Human Resources department to ensure this works smoothly. The course for each department must be completed by Tuesday June 25th 2024. We need many types of staff members. We must continue the onboarding process." required></td>
+          <td><textarea name="topic6" required>Orientation and Training</textarea></td>
+          <td><textarea name="note6" required>Recruitment has started again as of today. The administration team will be working with the Human Resources department to ensure this works smoothly. The course for each department must be completed by Tuesday June 25th 2024. We need many types of staff members. We must continue the onboarding process.</textarea></td>
         </tr>
       </tbody>
     </table>
@@ -139,16 +143,16 @@
       const pageHeight = doc.internal.pageSize.height;
 
       function addText(text, fontSize = textFontSize) {
-                        doc.setFontSize(fontSize);
-                        const textWidth = doc.getStringUnitWidth(text) * fontSize / doc.internal.scaleFactor;
-                        const remainingText = doc.splitTextToSize(text, doc.internal.pageSize.width - 2 * marginLeft);
-                        if (startY + (remainingText.length + 1) * lineHeight > pageHeight) {
-                            doc.addPage();
-                            startY = 20;
-                        }
-                        doc.text(remainingText, marginLeft, startY);
-                        startY += (remainingText.length + 1) * lineHeight;
-                    }
+        doc.setFontSize(fontSize);
+        const textWidth = doc.getStringUnitWidth(text) * fontSize / doc.internal.scaleFactor;
+        const remainingText = doc.splitTextToSize(text, doc.internal.pageSize.width - 2 * marginLeft);
+        if (startY + (remainingText.length + 1) * lineHeight > pageHeight) {
+          doc.addPage();
+          startY = 20;
+        }
+        doc.text(remainingText, marginLeft, startY);
+        startY += (remainingText.length + 1) * lineHeight;
+      }
 
       // Add title
       addText("Management Meeting", titleFontSize);
