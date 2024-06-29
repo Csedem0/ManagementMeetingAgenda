@@ -103,7 +103,6 @@
       <li><input type="text" name="attendee3" value="" required></li>
       <li><input type="text" name="attendee4" value="" required></li>
       <li><input type="text" name="attendee5" value="" required></li>
-      
     </ol>
     <h2>Topic Discussion/Meeting Notes</h2>
     <table>
@@ -137,6 +136,26 @@
         <tr>
           <td><textarea name="topic6" required></textarea></td>
           <td><textarea name="note6" required></textarea></td>
+        </tr>
+        <tr>
+          <td><textarea name="topic7" required></textarea></td>
+          <td><textarea name="note7" required></textarea></td>
+        </tr>
+        <tr>
+          <td><textarea name="topic8" required></textarea></td>
+          <td><textarea name="note8" required></textarea></td>
+        </tr>
+        <tr>
+          <td><textarea name="topic9" required></textarea></td>
+          <td><textarea name="note9" required></textarea></td>
+        </tr>
+        <tr>
+          <td><textarea name="topic10" required></textarea></td>
+          <td><textarea name="note10" required></textarea></td>
+        </tr>
+        <tr>
+          <td><textarea name="topic11" required></textarea></td>
+          <td><textarea name="note11" required></textarea></td>
         </tr>
       </tbody>
     </table>
@@ -196,7 +215,12 @@
         { topic: document.getElementsByName('topic3')[0].value, note: document.getElementsByName('note3')[0].value },
         { topic: document.getElementsByName('topic4')[0].value, note: document.getElementsByName('note4')[0].value },
         { topic: document.getElementsByName('topic5')[0].value, note: document.getElementsByName('note5')[0].value },
-        { topic: document.getElementsByName('topic6')[0].value, note: document.getElementsByName('note6')[0].value }
+        { topic: document.getElementsByName('topic6')[0].value, note: document.getElementsByName('note6')[0].value },
+        { topic: document.getElementsByName('topic7')[0].value, note: document.getElementsByName('note7')[0].value },
+        { topic: document.getElementsByName('topic8')[0].value, note: document.getElementsByName('note8')[0].value },
+        { topic: document.getElementsByName('topic9')[0].value, note: document.getElementsByName('note9')[0].value },
+        { topic: document.getElementsByName('topic10')[0].value, note: document.getElementsByName('note10')[0].value },
+        { topic: document.getElementsByName('topic11')[0].value, note: document.getElementsByName('note11')[0].value }
       ];
       const preparedBy = document.getElementById('preparedBy').value;
 
