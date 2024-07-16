@@ -7,47 +7,49 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 10px; /* Reduced margin */
     }
     h1, h2 {
       color: #2c3e50;
+      margin-top: 10px; /* Reduced margin */
+      margin-bottom: 5px; /* Reduced margin */
     }
     h1 {
-      border-bottom: 2px solid #2c3e50;
-      padding-bottom: 10px;
+      border-bottom: 1px solid #2c3e50; /* Reduced border */
+      padding-bottom: 5px; /* Reduced padding */
     }
     h2 {
-      font-size: 18px;
-      margin-bottom: 10px;
+      font-size: 16px; /* Reduced font size */
     }
     ul, ol {
       list-style-type: none;
       padding: 0;
+      margin: 0; /* Removed margin */
     }
     li {
-      margin-bottom: 10px;
+      margin-bottom: 5px; /* Reduced margin */
     }
     input[type="text"], textarea {
-      width: calc(100% - 22px);
-      padding: 10px;
+      width: calc(100% - 20px); /* Adjusted width */
+      padding: 5px; /* Reduced padding */
       border: 1px solid #ccc;
       border-radius: 4px;
-      margin-bottom: 10px;
+      margin-bottom: 5px; /* Reduced margin */
       box-sizing: border-box;
     }
     textarea {
-      height: 60px;
+      height: 50px; /* Reduced height */
       resize: vertical;
     }
     button {
       background-color: #2c3e50;
       color: white;
-      padding: 10px 20px;
+      padding: 5px 10px; /* Reduced padding */
       border: none;
       border-radius: 4px;
       cursor: pointer;
       display: block;
-      margin: 20px auto;
+      margin: 10px auto; /* Reduced margin */
     }
     button:hover {
       background-color: #34495e;
@@ -55,11 +57,11 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 20px;
+      margin-bottom: 10px; /* Reduced margin */
     }
     th, td {
       border: 1px solid #ccc;
-      padding: 10px;
+      padding: 5px; /* Reduced padding */
       text-align: left;
     }
     th {
@@ -70,16 +72,16 @@
       align-items: center;
     }
     .img {
-      height: 100px;
-      width: 100px;
-      margin-right: 20px;
+      height: 80px; /* Reduced size */
+      width: 80px; /* Reduced size */
+      margin-right: 10px; /* Reduced margin */
     }
     #signatureCanvas {
       border: 1px solid #ccc;
       border-radius: 4px;
-      width: 300px;
-      height: 100px;
-      margin-bottom: 10px;
+      width: 250px; /* Reduced size */
+      height: 80px; /* Reduced size */
+      margin-bottom: 5px; /* Reduced margin */
       display: block;
       margin: 0 auto;
     }
@@ -278,21 +280,21 @@
   // Function to generate PDF
   function generatePDF() {
     const doc = new jsPDF();
-    const titleFontSize = 22;
-    const subtitleFontSize = 16;
-    const textFontSize = 12;
-    const marginLeft = 10;
+    const titleFontSize = 20; /* Reduced font size */
+    const subtitleFontSize = 14; /* Reduced font size */
+    const textFontSize = 10; /* Reduced font size */
+    const marginLeft = 5; /* Reduced margin */
     const pageHeight = doc.internal.pageSize.height;
-    const lineHeight = 0.5;
-    let startY = 20;
+    const lineHeight = 1.1;
+    let startY = 10; /* Reduced starting position */
 
     function addText(text, fontSize, marginY = 0) {
       const textLines = doc.splitTextToSize(text, 190);
       doc.setFontSize(fontSize);
       textLines.forEach((line, index) => {
-        if (startY + fontSize * lineHeight > pageHeight - 20) {
+        if (startY + fontSize * lineHeight > pageHeight - 10) {
           doc.addPage();
-          startY = 20;
+          startY = 10;
         }
         doc.text(line, marginLeft, startY);
         startY += fontSize * lineHeight;
@@ -300,29 +302,29 @@
       startY += marginY;
     }
 
-    addText('Management Meeting', titleFontSize, 10);
-    addText('MEETING AGENDA', subtitleFontSize, 10);
-    addText(`Date: ${document.getElementById('date').value}`, textFontSize, 5);
-    addText(`Last Meeting: ${document.getElementById('lastMeeting').value}`, textFontSize, 5);
-    addText(`Purpose of Meeting: ${document.getElementById('purpose').value}`, textFontSize, 5);
-    addText(`Time: ${document.getElementById('time').value}`, textFontSize, 5);
-    addText(`Location: ${document.getElementById('location').value}`, textFontSize, 5);
-    addText(`Chair: ${document.getElementById('chair').value}`, textFontSize, 5);
-    addText(`Secretary: ${document.getElementById('secretary').value}`, textFontSize, 5);
-    addText('Summary of Last Meeting', subtitleFontSize, 10);
-    addText(`${document.getElementById('summaryLastMeeting').value}`, textFontSize, 5);
+    addText('Management Meeting', titleFontSize, 5);
+    addText('MEETING AGENDA', subtitleFontSize, 5);
+    addText(`Date: ${document.getElementById('date').value}`, textFontSize, 2);
+    addText(`Last Meeting: ${document.getElementById('lastMeeting').value}`, textFontSize, 2);
+    addText(`Purpose of Meeting: ${document.getElementById('purpose').value}`, textFontSize, 2);
+    addText(`Time: ${document.getElementById('time').value}`, textFontSize, 2);
+    addText(`Location: ${document.getElementById('location').value}`, textFontSize, 2);
+    addText(`Chair: ${document.getElementById('chair').value}`, textFontSize, 2);
+    addText(`Secretary: ${document.getElementById('secretary').value}`, textFontSize, 2);
+    addText('Summary of Last Meeting', subtitleFontSize, 5);
+    addText(`${document.getElementById('summaryLastMeeting').value}`, textFontSize, 2);
 
-    addText('ATTENTION:', subtitleFontSize, 10);
-    addText('It is extremely important for you to read this agenda prior to attending the meeting. In order for you to be prepared, you must read the meeting agenda and come to the meeting prepared with any information, suggestions, or concerns you may have regarding the topics provided.', textFontSize, 5);
-    addText('If there is a topic not yet listed that you find important, please contact the staff member who created the agenda in order to provide your suggested topic. Please also provide a note for the description of points that can be discussed.', textFontSize, 5);
-    addText('DURING THE MEETING: Your input is important; please provide your opinions as it assists the company in its growth.', textFontSize, 5);
+    addText('ATTENTION:', subtitleFontSize, 5);
+    addText('It is extremely important for you to read this agenda prior to attending the meeting. In order for you to be prepared, you must read the meeting agenda and come to the meeting prepared with any information, suggestions, or concerns you may have regarding the topics provided.', textFontSize, 2);
+    addText('If there is a topic not yet listed that you find important, please contact the staff member who created the agenda in order to provide your suggested topic. Please also provide a note for the description of points that can be discussed.', textFontSize, 2);
+    addText('DURING THE MEETING: Your input is important; please provide your opinions as it assists the company in its growth.', textFontSize, 2);
 
-    addText('ATTENDEES:', subtitleFontSize, 10);
+    addText('ATTENDEES:', subtitleFontSize, 5);
     for (let i = 1; i <= 5; i++) {
-      addText(`${i}. ${document.querySelector(`input[name="attendee${i}"]`).value}`, textFontSize, 5);
+      addText(`${i}. ${document.querySelector(`input[name="attendee${i}"]`).value}`, textFontSize, 2);
     }
 
-    addText('Topic Discussion/Meeting Notes', subtitleFontSize, 10);
+    addText('Topic Discussion/Meeting Notes', subtitleFontSize, 5);
     const tableData = [];
     for (let i = 1; i <= 22; i++) {
       tableData.push([
@@ -332,15 +334,15 @@
     }
 
     tableData.forEach((row, index) => {
-      addText(`Topic ${index + 1}: ${row[0]}`, textFontSize, 5);
-      addText(`Note: ${row[1]}`, textFontSize, 5);
+      addText(`Topic ${index + 1}: ${row[0]}`, textFontSize, 2);
+      addText(`Note: ${row[1]}`, textFontSize, 2);
     });
 
-    addText(`Prepared By: ${document.getElementById('preparedBy').value}`, textFontSize, 10);
+    addText(`Prepared By: ${document.getElementById('preparedBy').value}`, textFontSize, 5);
 
     // Add signature to the PDF
     const signature = document.getElementById('signatureCanvas').toDataURL('image/png');
-    doc.addImage(signature, 'PNG', marginLeft, startY + 10, 100, 50);
+    doc.addImage(signature, 'PNG', marginLeft, startY + 5, 80, 40); /* Reduced size */
 
     doc.save('Management_Meeting_Agenda.pdf');
   }
