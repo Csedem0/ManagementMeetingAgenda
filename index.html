@@ -338,7 +338,7 @@
       // const lineHeight = 1.0; /* Reduced line height */
       let startY = 10; /* Reduced starting position */
 
-      function addText(text, fontSize, marginY = 1, lineHeight = 1.0) { // Reduce marginY
+      function addText(text, fontSize, marginY = 1, lineHeight = 0.5) { // Reduce marginY
         const textLines = doc.splitTextToSize(text, 190);
         doc.setFontSize(fontSize);
         textLines.forEach((line, index) => {
@@ -385,7 +385,7 @@
 
       tableData.forEach((row, index) => {
         addText(`Topic ${index + 1}: ${row[0]}`, textFontSize, 1, 0.5);
-        addText(`Note: ${row[1]}`, textFontSize, 1, 1);
+        addText(`Note: ${row[1]}`, textFontSize, 1, 0.5);
       });
 
       addText(`Prepared By: ${document.getElementById('preparedBy').value}`, textFontSize, 2); // Reduce marginY
