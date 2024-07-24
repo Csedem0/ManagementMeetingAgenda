@@ -9,28 +9,22 @@
     body {
       font-family: Arial, sans-serif;
       margin: 10px;
-      /* Reduced margin */
     }
 
     h1,
     h2 {
       color: #2c3e50;
       margin-top: 10px;
-      /* Reduced margin */
       margin-bottom: 5px;
-      /* Reduced margin */
     }
 
     h1 {
       border-bottom: 1px solid #2c3e50;
-      /* Reduced border */
       padding-bottom: 5px;
-      /* Reduced padding */
     }
 
     h2 {
       font-size: 16px;
-      /* Reduced font size */
     }
 
     ul,
@@ -38,30 +32,24 @@
       list-style-type: none;
       padding: 0;
       margin: 0;
-      /* Removed margin */
     }
 
     li {
       margin-bottom: 5px;
-      /* Reduced margin */
     }
 
     input[type="text"],
     textarea {
       width: calc(100% - 20px);
-      /* Adjusted width */
       padding: 5px;
-      /* Reduced padding */
       border: 1px solid #ccc;
       border-radius: 4px;
       margin-bottom: 5px;
-      /* Reduced margin */
       box-sizing: border-box;
     }
 
     textarea {
       height: 50px;
-      /* Reduced height */
       resize: vertical;
     }
 
@@ -69,13 +57,11 @@
       background-color: #2c3e50;
       color: white;
       padding: 5px 10px;
-      /* Reduced padding */
       border: none;
       border-radius: 4px;
       cursor: pointer;
       display: block;
       margin: 10px auto;
-      /* Reduced margin */
     }
 
     button:hover {
@@ -86,14 +72,12 @@
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 10px;
-      /* Reduced margin */
     }
 
     th,
     td {
       border: 1px solid #ccc;
       padding: 5px;
-      /* Reduced padding */
       text-align: left;
     }
 
@@ -108,22 +92,16 @@
 
     .img {
       height: 80px;
-      /* Reduced size */
       width: 80px;
-      /* Reduced size */
       margin-right: 10px;
-      /* Reduced margin */
     }
 
     #signatureCanvas {
       border: 1px solid #ccc;
       border-radius: 4px;
       width: 250px;
-      /* Reduced size */
       height: 80px;
-      /* Reduced size */
       margin-bottom: 5px;
-      /* Reduced margin */
       display: block;
       margin: 0 auto;
     }
@@ -148,8 +126,7 @@
   <form id="meetingForm">
     <ul>
       <li><strong>Date:</strong><br><input type="text" id="date" name="date" value="" required></li>
-      <li><strong>Last Meeting:</strong><br><input type="text" id="lastMeeting" name="lastMeeting" value="" required>
-      </li>
+      <li><strong>Last Meeting:</strong><br><input type="text" id="lastMeeting" name="lastMeeting" value="" required></li>
       <li><strong>Purpose of Meeting:</strong><br><input type="text" id="purpose" name="purpose" value="" required></li>
       <li><strong>Time:</strong><br><input type="text" id="time" name="time" value="" required></li>
       <li><strong>Location:</strong><br><input type="text" id="location" name="location" value="" required></li>
@@ -185,96 +162,119 @@
       <thead>
         <tr>
           <th>Topic</th>
+          <th>Duration (min)</th>
           <th>Discussion/Meeting Notes</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>1. <textarea name="topic1" required></textarea></td>
+          <td><input type="text" name="duration1" required></td>
           <td><textarea name="note1" required></textarea></td>
         </tr>
         <tr>
           <td>2. <textarea name="topic2" required></textarea></td>
+          <td><input type="text" name="duration2" required></td>
           <td><textarea name="note2" required></textarea></td>
         </tr>
         <tr>
           <td>3. <textarea name="topic3" required></textarea></td>
+          <td><input type="text" name="duration3" required></td>
           <td><textarea name="note3" required></textarea></td>
         </tr>
         <tr>
           <td>4. <textarea name="topic4" required></textarea></td>
+          <td><input type="text" name="duration4" required></td>
           <td><textarea name="note4" required></textarea></td>
         </tr>
         <tr>
           <td>5. <textarea name="topic5" required></textarea></td>
+          <td><input type="text" name="duration5" required></td>
           <td><textarea name="note5" required></textarea></td>
         </tr>
         <tr>
           <td>6. <textarea name="topic6" required></textarea></td>
+          <td><input type="text" name="duration6" required></td>
           <td><textarea name="note6" required></textarea></td>
         </tr>
         <tr>
           <td>7. <textarea name="topic7" required></textarea></td>
+          <td><input type="text" name="duration7" required></td>
           <td><textarea name="note7" required></textarea></td>
         </tr>
         <tr>
           <td>8. <textarea name="topic8" required></textarea></td>
+          <td><input type="text" name="duration8" required></td>
           <td><textarea name="note8" required></textarea></td>
         </tr>
         <tr>
           <td>9. <textarea name="topic9" required></textarea></td>
+          <td><input type="text" name="duration9" required></td>
           <td><textarea name="note9" required></textarea></td>
         </tr>
         <tr>
           <td>10. <textarea name="topic10" required></textarea></td>
+          <td><input type="text" name="duration10" required></td>
           <td><textarea name="note10" required></textarea></td>
         </tr>
         <tr>
           <td>11. <textarea name="topic11" required></textarea></td>
+          <td><input type="text" name="duration11" required></td>
           <td><textarea name="note11" required></textarea></td>
         </tr>
         <tr>
           <td>12. <textarea name="topic12" required></textarea></td>
+          <td><input type="text" name="duration12" required></td>
           <td><textarea name="note12" required></textarea></td>
         </tr>
         <tr>
           <td>13. <textarea name="topic13" required></textarea></td>
+          <td><input type="text" name="duration13" required></td>
           <td><textarea name="note13" required></textarea></td>
         </tr>
         <tr>
           <td>14. <textarea name="topic14" required></textarea></td>
+          <td><input type="text" name="duration14" required></td>
           <td><textarea name="note14" required></textarea></td>
         </tr>
         <tr>
           <td>15. <textarea name="topic15" required></textarea></td>
+          <td><input type="text" name="duration15" required></td>
           <td><textarea name="note15" required></textarea></td>
         </tr>
         <tr>
           <td>16. <textarea name="topic16" required></textarea></td>
+          <td><input type="text" name="duration16" required></td>
           <td><textarea name="note16" required></textarea></td>
         </tr>
         <tr>
           <td>17. <textarea name="topic17" required></textarea></td>
+          <td><input type="text" name="duration17" required></td>
           <td><textarea name="note17" required></textarea></td>
         </tr>
         <tr>
           <td>18. <textarea name="topic18" required></textarea></td>
+          <td><input type="text" name="duration18" required></td>
           <td><textarea name="note18" required></textarea></td>
         </tr>
         <tr>
           <td>19. <textarea name="topic19" required></textarea></td>
+          <td><input type="text" name="duration19" required></td>
           <td><textarea name="note19" required></textarea></td>
         </tr>
         <tr>
           <td>20. <textarea name="topic20" required></textarea></td>
+          <td><input type="text" name="duration20" required></td>
           <td><textarea name="note20" required></textarea></td>
         </tr>
         <tr>
           <td>21. <textarea name="topic21" required></textarea></td>
+          <td><input type="text" name="duration21" required></td>
           <td><textarea name="note21" required></textarea></td>
         </tr>
         <tr>
           <td>22. <textarea name="topic22" required></textarea></td>
+          <td><input type="text" name="duration22" required></td>
           <td><textarea name="note22" required></textarea></td>
         </tr>
       </tbody>
@@ -330,15 +330,14 @@
     // Function to generate PDF
     function generatePDF() {
       const doc = new jsPDF();
-      const titleFontSize = 20; /* Reduced font size */
-      const subtitleFontSize = 14; /* Reduced font size */
-      const textFontSize = 10; /* Reduced font size */
-      const marginLeft = 5; /* Reduced margin */
+      const titleFontSize = 20;
+      const subtitleFontSize = 14;
+      const textFontSize = 10;
+      const marginLeft = 5;
       const pageHeight = doc.internal.pageSize.height;
-      // const lineHeight = 1.0; /* Reduced line height */
-      let startY = 10; /* Reduced starting position */
+      let startY = 10;
 
-      function addText(text, fontSize, marginY = 1, lineHeight = 0.5) { // Reduce marginY
+      function addText(text, fontSize, marginY = 5, lineHeight = 1.5) {
         const textLines = doc.splitTextToSize(text, 190);
         doc.setFontSize(fontSize);
         textLines.forEach((line, index) => {
@@ -352,47 +351,49 @@
         startY += marginY;
       }
 
-      addText('Management Meeting', titleFontSize, 1, 0.5); // Reduce marginY
-      addText('MEETING AGENDA', subtitleFontSize, 1, 0.5); // Reduce marginY
-      addText(`Date: ${document.getElementById('date').value}`, textFontSize, 1, 0.5);
-      addText(`Last Meeting: ${document.getElementById('lastMeeting').value}`, textFontSize, 1, 0.5);
-      addText(`Purpose of Meeting: ${document.getElementById('purpose').value}`, textFontSize, 1, 0.5);
-      addText(`Time: ${document.getElementById('time').value}`, textFontSize, 1, 0.5);
-      addText(`Location: ${document.getElementById('location').value}`, textFontSize, 1, 0.5);
-      addText(`Chair: ${document.getElementById('chair').value}`, textFontSize, 1, 0.5);
-      addText(`Secretary: ${document.getElementById('secretary').value}`, textFontSize, 2, 0.5);
-      addText('Summary of Last Meeting', subtitleFontSize, 2, 0.5); // Reduce marginY
-      addText(`${document.getElementById('summaryLastMeeting').value}`, textFontSize, 1, 0.5);
+      addText('Management Meeting', titleFontSize, 5, 1);
+      addText('MEETING AGENDA', subtitleFontSize, 5, 1);
+      addText(`Date: ${document.getElementById('date').value}`, textFontSize, 5, 1);
+      addText(`Last Meeting: ${document.getElementById('lastMeeting').value}`, textFontSize, 5, 1);
+      addText(`Purpose of Meeting: ${document.getElementById('purpose').value}`, textFontSize, 5, 1);
+      addText(`Time: ${document.getElementById('time').value}`, textFontSize, 5, 1);
+      addText(`Location: ${document.getElementById('location').value}`, textFontSize, 5, 1);
+      addText(`Chair: ${document.getElementById('chair').value}`, textFontSize, 5, 1);
+      addText(`Secretary: ${document.getElementById('secretary').value}`, textFontSize, 10, 1);
+      addText('Summary of Last Meeting', subtitleFontSize, 10, 1);
+      addText(`${document.getElementById('summaryLastMeeting').value}`, textFontSize, 5, 1.5);
 
-      addText('ATTENTION:', subtitleFontSize, 2, 0.5); // Reduce marginY
-      addText('It is extremely important for you to read this agenda prior to attending the meeting. In order for you to be prepared, you must read the meeting agenda and come to the meeting prepared with any information, suggestions, or concerns you may have regarding the topics provided.', textFontSize, 1);
-      addText('If there is a topic not yet listed that you find important, please contact the staff member who created the agenda in order to provide your suggested topic. Please also provide a note for the description of points that can be discussed.', textFontSize, 1);
-      addText('DURING THE MEETING: Your input is important; please provide your opinions as it assists the company in its growth.', textFontSize, 1);
+      addText('ATTENTION:', subtitleFontSize, 10, 1);
+      addText('It is extremely important for you to read this agenda prior to attending the meeting. In order for you to be prepared, you must read the meeting agenda and come to the meeting prepared with any information, suggestions, or concerns you may have regarding the topics provided.', textFontSize, 5);
+      addText('If there is a topic not yet listed that you find important, please contact the staff member who created the agenda in order to provide your suggested topic. Please also provide a note for the description of points that can be discussed.', textFontSize, 5);
+      addText('DURING THE MEETING: Your input is important; please provide your opinions as it assists the company in its growth.', textFontSize, 10);
 
-      addText('ATTENDEES:', subtitleFontSize, 2, 0.5); // Reduce marginY
+      addText('ATTENDEES:', subtitleFontSize, 10, 1);
       for (let i = 1; i <= 5; i++) {
-        addText(`${i}. ${document.querySelector(`input[name="attendee${i}"]`).value}`, textFontSize, 1);
+        addText(`${i}. ${document.querySelector(`input[name="attendee${i}"]`).value}`, textFontSize, 5);
       }
 
-      addText('Topic Discussion/Meeting Notes', subtitleFontSize, 2, 0.5); // Reduce marginY
+      addText('Topic Discussion/Meeting Notes', subtitleFontSize, 10, 1);
       const tableData = [];
       for (let i = 1; i <= 22; i++) {
         tableData.push([
           document.querySelector(`textarea[name="topic${i}"]`).value,
+          document.querySelector(`input[name="duration${i}"]`).value,
           document.querySelector(`textarea[name="note${i}"]`).value
         ]);
       }
 
       tableData.forEach((row, index) => {
-        addText(`Topic ${index + 1}: ${row[0]}`, textFontSize, 1, 0.5);
-        addText(`Note: ${row[1]}`, textFontSize, 1, 0.5);
+        addText(`Topic ${index + 1}: ${row[0]}`, textFontSize, 5, 1.5);
+        addText(`Duration: ${row[1]} minutes`, textFontSize, 5, 1.5);
+        addText(`Note: ${row[2]}`, textFontSize, 10, 1.5);
       });
 
-      addText(`Prepared By: ${document.getElementById('preparedBy').value}`, textFontSize, 2); // Reduce marginY
+      addText(`Prepared By: ${document.getElementById('preparedBy').value}`, textFontSize, 10);
 
       // Add signature to the PDF
       const signature = document.getElementById('signatureCanvas').toDataURL('image/png');
-      doc.addImage(signature, 'PNG', marginLeft, startY + 3, 80, 40); /* Reduced size */
+      doc.addImage(signature, 'PNG', marginLeft, startY + 10, 80, 40);
 
       doc.save('Management_Meeting_Agenda.pdf');
     }
