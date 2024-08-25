@@ -173,6 +173,7 @@
         <label for="meetingType"><strong>Meeting Type:</strong></label>
         <select id="meetingType" onchange="updateMeetingTitle()">
             <option value="Management Meeting">Management Meeting Agenda Template</option>
+            <option value="Executive Department Meeting">Executive Department Meeting Agenda Template</option>
             <option value="Human Resources Meeting">Human Resources Meeting Agenda Template</option>
             <option value="Accounting Department Meeting">Accounting Department Meeting Agenda Template</option>
             <option value="Development Department Meeting">Development Department Meeting Agenda Template</option>
@@ -378,7 +379,7 @@
             const signature = document.getElementById('signatureCanvas').toDataURL('image/png');
             doc.addImage(signature, 'PNG', marginLeft, startY + 10, 80, 40);
 
-            doc.save('Management_Meeting_Agenda.pdf');
+            doc.save('Meeting_Agenda.pdf');
         }
 
         // Signature canvas functionality
