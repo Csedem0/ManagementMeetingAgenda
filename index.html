@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management Meeting Agenda</title>
+    <title>Meeting Agenda</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -148,6 +148,17 @@
         .form-footer {
             text-align: center;
         }
+
+        .attendee-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        #addAttendee,
+        #removeAttendee {
+            width: 48%;
+        }
     </style>
 </head>
 
@@ -155,9 +166,21 @@
     <div class="logo-holder">
         <img src="rahlogo.jpg" alt="Company Logo" class="img">
         <h2>RAH Real Estate Development Company International Limited</h2>
-        <p>Website: <a href="http://www.rahrealestate.com">www.rahrealestate.com</a></p>
+        <p>Website: <a href="http://www.rahrealestate.org">www.rahrealestate.org</a></p>
     </div>
-    <h1>Management Meeting</h1>
+
+    <div class="form-section">
+        <label for="meetingType"><strong>Meeting Type:</strong></label>
+        <select id="meetingType" onchange="updateMeetingTitle()">
+            <option value="Management Meeting">Management Meeting Agenda Template</option>
+            <option value="Human Resources Meeting">Human Resources Meeting Agenda Template</option>
+            <option value="Accounting Department Meeting">Accounting Department Meeting Agenda Template</option>
+            <option value="Development Department Meeting">Development Department Meeting Agenda Template</option>
+            <option value="Marketing Department Meeting">Marketing Department Meeting Agenda Template</option>
+        </select>
+        <h1 id="meetingTitle">Management Meeting</h1>
+    </div>
+
     <div class="form-section">
         <h2>MEETING AGENDA</h2>
         <form id="meetingForm">
@@ -182,13 +205,17 @@
             </div>
             <div class="form-section">
                 <h2>ATTENDEES:</h2>
-                <ol>
+                <ol id="attendeesList">
                     <li><input type="text" name="attendee1" value="" required></li>
                     <li><input type="text" name="attendee2" value="" required></li>
                     <li><input type="text" name="attendee3" value="" required></li>
                     <li><input type="text" name="attendee4" value="" required></li>
                     <li><input type="text" name="attendee5" value="" required></li>
                 </ol>
+                <div class="attendee-buttons">
+                    <button type="button" id="addAttendee">Add Attendee</button>
+                    <button type="button" id="removeAttendee">Remove Attendee</button>
+                </div>
             </div>
             <div class="form-section">
                 <h2>Topic Discussion/Meeting Notes</h2>
@@ -220,6 +247,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
     <script>
         const { jsPDF } = window.jspdf;
+
+        function updateMeetingTitle() {
+            const meetingType = document.getElementById('meetingType').value;
+            document.getElementById('meetingTitle').innerText = meetingType;
+        }
+
+        let attendeeCount = 5;
+        document.getElementById('addAttendee').addEventListener('click', () => {
+            attendeeCount++;
+            const attendeeItem = document.createElement('li');
+            attendeeItem.innerHTML = `<input type="text" name="attendee${attendeeCount}" required>`;
+            document.getElementById('attendeesList').appendChild(attendeeItem);
+        });
+
+        document.getElementById('removeAttendee').addEventListener('click', () => {
+            if (attendeeCount > 1) {
+                document.getElementById('attendeesList').lastElementChild.remove();
+                attendeeCount--;
+            }
+        });
 
         // Function to save progress
         function saveProgress() {
@@ -263,9 +310,9 @@
             const titleFontSize = 20;
             const subtitleFontSize = 14;
             const textFontSize = 10;
-            const marginLeft = 5;
+            const marginLeft = 10;
             const pageHeight = doc.internal.pageSize.height;
-            let startY = 10;
+            let startY = 20;
 
             function addText(text, fontSize, marginY = 5, lineHeight = 0.5) {
                 const textLines = doc.splitTextToSize(text, 190);
@@ -281,11 +328,12 @@
                 startY += marginY;
             }
 
-            doc.addImage(document.querySelector('.img').src, 'JPEG', marginLeft, startY, 80, 40);
+            doc.addImage(document.querySelector('.img').src, 'JPEG', marginLeft, startY, 40, 40);
+            startY += 50;
             addText('RAH Real Estate Development Company International Limited', subtitleFontSize, 10);
-            addText('Website: www.rahrealestate.com', textFontSize, 10);
+            addText('Website: www.rahrealestate.org', textFontSize, 10);
 
-            addText('Management Meeting', titleFontSize, 4, 1);
+            addText(document.getElementById('meetingTitle').innerText, titleFontSize, 4, 1);
             addText('MEETING AGENDA', subtitleFontSize, 4, 1);
             addText(`Date: ${document.getElementById('date').value}`, textFontSize, 4, 1);
             addText(`Last Meeting: ${document.getElementById('lastMeeting').value}`, textFontSize, 4, 1);
@@ -297,17 +345,14 @@
             addText('Summary of Last Meeting', subtitleFontSize, 10, 1);
             addText(`${document.getElementById('summaryLastMeeting').value}`, textFontSize, 5, 1.5);
 
-            addText('ATTENTION:', subtitleFontSize, 10, 1);
-            addText('It is extremely important for you to read this agenda prior to attending the meeting. In order for you to be prepared, you must read the meeting agenda and come to the meeting prepared with any information, suggestions, or concerns you may have regarding the topics provided.', textFontSize, 5);
-            addText('If there is a topic not yet listed that you find important, please contact the staff member who created the agenda in order to provide your suggested topic. Please also provide a note for the description of points that can be discussed.', textFontSize, 5);
-            addText('DURING THE MEETING: Your input is important; please provide your opinions as it assists the company in its growth.', textFontSize, 10);
-
             addText('ATTENDEES:', subtitleFontSize, 10, 1);
-            for (let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= attendeeCount; i++) {
                 addText(`${i}. ${document.querySelector(`input[name="attendee${i}"]`).value}`, textFontSize, 5);
             }
 
             addText('Topic Discussion/Meeting Notes', subtitleFontSize, 10, 1);
+
+            // Add separator lines between topics
             const tableData = [];
             for (let i = 1; i <= document.querySelectorAll('.topic-item').length; i++) {
                 tableData.push([
@@ -321,6 +366,9 @@
                 addText(`Topic ${index + 1}: ${row[0]}`, textFontSize, 4, 0.5);
                 addText(`Duration: ${row[1]} minutes`, textFontSize, 4, 1);
                 addText(`Note: ${row[2]}`, textFontSize, 10, 0.5);
+                doc.setDrawColor(0);
+                doc.line(marginLeft, startY, 200, startY);  // Add a separator line
+                startY += 5;
             });
 
             addText(`Total Meeting Time: ${document.getElementById('totalTime').value} minutes`, textFontSize, 10);
