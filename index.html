@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meeting Agenda</title>
+    <title>Management Meeting Agenda</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -170,16 +170,7 @@
     </div>
 
     <div class="form-section">
-        <label for="meetingType"><strong>Meeting Type:</strong></label>
-        <select id="meetingType" onchange="updateMeetingTitle()">
-            <option value="Management Meeting">Management Meeting Agenda Template</option>
-            <option value="Executive Department Meeting">Executive Department Meeting Agenda Template</option>
-            <option value="Human Resources Meeting">Human Resources Meeting Agenda Template</option>
-            <option value="Accounting Department Meeting">Accounting Department Meeting Agenda Template</option>
-            <option value="Development Department Meeting">Development Department Meeting Agenda Template</option>
-            <option value="Marketing Department Meeting">Marketing Department Meeting Agenda Template</option>
-        </select>
-        <h1 id="meetingTitle">Management Meeting</h1>
+        <h1>Management Meeting</h1>
     </div>
 
     <div class="form-section">
@@ -249,11 +240,6 @@
     <script>
         const { jsPDF } = window.jspdf;
 
-        function updateMeetingTitle() {
-            const meetingType = document.getElementById('meetingType').value;
-            document.getElementById('meetingTitle').innerText = meetingType;
-        }
-
         let attendeeCount = 5;
         document.getElementById('addAttendee').addEventListener('click', () => {
             attendeeCount++;
@@ -269,7 +255,6 @@
             }
         });
 
-        // Function to save progress
         function saveProgress() {
             const form = document.getElementById('meetingForm');
             const formData = new FormData(form);
@@ -283,7 +268,6 @@
             alert('Progress saved successfully!');
         }
 
-        // Function to load progress
         function loadProgress() {
             const data = JSON.parse(localStorage.getItem('meetingFormData'));
             if (data) {
@@ -305,7 +289,6 @@
             }
         }
 
-        // Function to generate PDF
         function generatePDF() {
             const doc = new jsPDF();
             const titleFontSize = 20;
@@ -334,7 +317,7 @@
             addText('RAH Real Estate Development Company International Limited', subtitleFontSize, 10);
             addText('Website: www.rahrealestate.org', textFontSize, 10);
 
-            addText(document.getElementById('meetingTitle').innerText, titleFontSize, 4, 1);
+            addText('Management Meeting', titleFontSize, 4, 1);
             addText('MEETING AGENDA', subtitleFontSize, 4, 1);
             addText(`Date: ${document.getElementById('date').value}`, textFontSize, 4, 1);
             addText(`Last Meeting: ${document.getElementById('lastMeeting').value}`, textFontSize, 4, 1);
@@ -353,7 +336,6 @@
 
             addText('Topic Discussion/Meeting Notes', subtitleFontSize, 10, 1);
 
-            // Add separator lines between topics
             const tableData = [];
             for (let i = 1; i <= document.querySelectorAll('.topic-item').length; i++) {
                 tableData.push([
@@ -368,21 +350,19 @@
                 addText(`Duration: ${row[1]} minutes`, textFontSize, 4, 1);
                 addText(`Note: ${row[2]}`, textFontSize, 10, 0.5);
                 doc.setDrawColor(0);
-                doc.line(marginLeft, startY, 200, startY);  // Add a separator line
+                doc.line(marginLeft, startY, 200, startY);
                 startY += 5;
             });
 
             addText(`Total Meeting Time: ${document.getElementById('totalTime').value} minutes`, textFontSize, 10);
             addText(`Prepared By: ${document.getElementById('preparedBy').value}`, textFontSize, 10);
 
-            // Add signature to the PDF
             const signature = document.getElementById('signatureCanvas').toDataURL('image/png');
             doc.addImage(signature, 'PNG', marginLeft, startY + 10, 80, 40);
 
-            doc.save('Meeting_Agenda.pdf');
+            doc.save('Management_Meeting_Agenda.pdf');
         }
 
-        // Signature canvas functionality
         const canvas = document.getElementById('signatureCanvas');
         const ctx = canvas.getContext('2d');
         let isDrawing = false;
