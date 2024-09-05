@@ -179,12 +179,13 @@
             <div class="form-section">
                 <ul>
                     <li><strong>Date:</strong><br><input type="text" id="date" name="date" value="" required></li>
-                    <li><strong>Last Meeting:</strong><br><input type="text" id="lastMeeting" name="lastMeeting" value=""
-                            required></li>
+                    <li><strong>Last Meeting:</strong><br><input type="text" id="lastMeeting" name="lastMeeting"
+                            value="" required></li>
                     <li><strong>Purpose of Meeting:</strong><br><input type="text" id="purpose" name="purpose" value=""
                             required></li>
                     <li><strong>Time:</strong><br><input type="text" id="time" name="time" value="" required></li>
-                    <li><strong>Location:</strong><br><input type="text" id="location" name="location" value="" required>
+                    <li><strong>Location:</strong><br><input type="text" id="location" name="location" value=""
+                            required>
                     </li>
                     <li><strong>Chair:</strong><br><input type="text" id="chair" name="chair" value="" required></li>
                     <li><strong>Secretary:</strong><br><input type="text" id="secretary" name="secretary" value=""
@@ -236,6 +237,8 @@
         </form>
     </div>
 
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
     <script>
         const { jsPDF } = window.jspdf;
@@ -271,12 +274,54 @@
         function loadProgress() {
             const data = JSON.parse(localStorage.getItem('meetingFormData'));
             if (data) {
+                // Load attendees
+                attendeeCount = 0;
+                const attendeesList = document.getElementById('attendeesList');
+                attendeesList.innerHTML = '';
+                Object.keys(data).forEach(key => {
+                    if (key.startsWith('attendee')) {
+                        attendeeCount++;
+                        const attendeeItem = document.createElement('li');
+                        attendeeItem.innerHTML = `<input type="text" name="attendee${attendeeCount}" required>`;
+                        attendeesList.appendChild(attendeeItem);
+                    }
+                });
+
+                // Load topics
+                const topicsContainer = document.getElementById('topicsContainer');
+                topicsContainer.innerHTML = '';
+                let topicNumbers = [];
+                Object.keys(data).forEach(key => {
+                    if (key.startsWith('topic')) {
+                        const number = key.match(/\d+/)[0];
+                        if (!topicNumbers.includes(number)) {
+                            topicNumbers.push(number);
+                        }
+                    }
+                });
+                topicNumbers.sort((a, b) => a - b);
+                topicNumbers.forEach(number => {
+                    const topicItem = document.createElement('div');
+                    topicItem.classList.add('topic-item');
+                    topicItem.setAttribute('data-topic-number', number);
+                    topicItem.innerHTML = `
+                        <h3>Topic ${number}</h3>
+                        <textarea name="topic${number}" required></textarea>
+                        <div><strong>Duration (min):</strong><input type="text" name="duration${number}" required></div>
+                        <div><strong>Note:</strong><textarea name="note${number}" required></textarea></div>
+                    `;
+                    topicsContainer.appendChild(topicItem);
+                });
+
+                // Populate form fields
                 Object.keys(data).forEach(key => {
                     const element = document.querySelector(`[name="${key}"]`);
                     if (element) {
                         element.value = data[key];
                     }
                 });
+
+                // Load signature
                 if (data.signature) {
                     const canvas = document.getElementById('signatureCanvas');
                     const ctx = canvas.getContext('2d');
